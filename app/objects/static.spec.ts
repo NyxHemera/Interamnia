@@ -1,5 +1,5 @@
 import {
-	System,
+	StarSystem,
 	SolarObj,
 	Planet,
 	Moon,
@@ -9,6 +9,32 @@ import {
 describe('Static Library', () => {
 
 	describe('StarSystem', () => {
+
+		it('generates 1-3 stars per system', () => {
+			var system = new StarSystem();
+			for(let i=0; i<100; i++) {
+				system.planets = StarSystem.genPlanets(system);
+				expect(system.stars.length > 0).toEqual(true);
+				expect(system.stars.length <= 3).toEqual(true);
+			}
+		});
+
+
+		it('has stars', () => {
+			var system = new StarSystem();
+			expect(system.stars).toBeTruthy();
+			expect(system.stars.length > 0).toEqual(true);
+			expect(system.stars.length <= 3).toEqual(true);
+		});
+
+		it('generates 0-8 planets per system', () => {
+			var system = new StarSystem();
+			for(let i=0; i<100; i++) {
+				system.planets = StarSystem.genPlanets(system);
+				expect(system.planets.length >= 0).toEqual(true);
+				expect(system.planets.length <= 8).toEqual(true);
+			}
+		});
 
 	});
 
@@ -45,25 +71,22 @@ describe('Static Library', () => {
 		});
 
 		it('generates gas type diameter between 40Mm and 200Mm', () => {
-			var p = new Planet();
 			for(var i=0; i<100; i++) {
-				var x = p.genDiameter("Gas");
+				var x = Planet.genDiameter("Gas");
 				expect(x < 200000 && x > 40000).toBeTruthy();
 			}
 		});
 
 		it('generates rock type diameter between 3Mm and 30Mm', () => {
-			var p = new Planet();
 			for(var i=0; i<100; i++) {
-				var x = p.genDiameter("Rock");
+				var x = Planet.genDiameter("Rock");
 				expect(x < 30000 && x > 3000).toBeTruthy();
 			}
 		});
 
 		it('generates ice type diameter between 3Mm and 30Mm', () => {
-			var p = new Planet();
 			for(var i=0; i<100; i++) {
-				var x = p.genDiameter("Ice");
+				var x = Planet.genDiameter("Ice");
 				expect(x < 30000 && x > 3000).toBeTruthy();
 			}
 		});
@@ -106,7 +129,7 @@ describe('Static Library', () => {
 			var p = new Planet();
 			var m = new Moon(p);
 			for(var i=0; i<100; i++) {
-				var x = m.genDiameter();
+				var x = Moon.genDiameter(p);
 				expect(x < p.diameter).toBeTruthy();
 			}
 		});

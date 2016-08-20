@@ -2,6 +2,28 @@
 var static_1 = require('./static');
 describe('Static Library', function () {
     describe('StarSystem', function () {
+        it('generates 1-3 stars per system', function () {
+            var system = new static_1.StarSystem();
+            for (var i = 0; i < 100; i++) {
+                system.planets = static_1.StarSystem.genPlanets(system);
+                expect(system.stars.length > 0).toEqual(true);
+                expect(system.stars.length <= 3).toEqual(true);
+            }
+        });
+        it('has stars', function () {
+            var system = new static_1.StarSystem();
+            expect(system.stars).toBeTruthy();
+            expect(system.stars.length > 0).toEqual(true);
+            expect(system.stars.length <= 3).toEqual(true);
+        });
+        it('generates 0-8 planets per system', function () {
+            var system = new static_1.StarSystem();
+            for (var i = 0; i < 100; i++) {
+                system.planets = static_1.StarSystem.genPlanets(system);
+                expect(system.planets.length >= 0).toEqual(true);
+                expect(system.planets.length <= 8).toEqual(true);
+            }
+        });
     });
     describe('SolarObj', function () {
         it('can calculate the distance between two solar objects', function () {
@@ -28,23 +50,20 @@ describe('Static Library', function () {
             }
         });
         it('generates gas type diameter between 40Mm and 200Mm', function () {
-            var p = new static_1.Planet();
             for (var i = 0; i < 100; i++) {
-                var x = p.genDiameter("Gas");
+                var x = static_1.Planet.genDiameter("Gas");
                 expect(x < 200000 && x > 40000).toBeTruthy();
             }
         });
         it('generates rock type diameter between 3Mm and 30Mm', function () {
-            var p = new static_1.Planet();
             for (var i = 0; i < 100; i++) {
-                var x = p.genDiameter("Rock");
+                var x = static_1.Planet.genDiameter("Rock");
                 expect(x < 30000 && x > 3000).toBeTruthy();
             }
         });
         it('generates ice type diameter between 3Mm and 30Mm', function () {
-            var p = new static_1.Planet();
             for (var i = 0; i < 100; i++) {
-                var x = p.genDiameter("Ice");
+                var x = static_1.Planet.genDiameter("Ice");
                 expect(x < 30000 && x > 3000).toBeTruthy();
             }
         });
@@ -79,7 +98,7 @@ describe('Static Library', function () {
             var p = new static_1.Planet();
             var m = new static_1.Moon(p);
             for (var i = 0; i < 100; i++) {
-                var x = m.genDiameter();
+                var x = static_1.Moon.genDiameter(p);
                 expect(x < p.diameter).toBeTruthy();
             }
         });
