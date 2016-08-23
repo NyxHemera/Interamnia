@@ -7,6 +7,7 @@ class StarSystem {
 		this.galaxy; // Galaxy it belongs to
 
 		// System Attributes
+		this.name = "Sirius";
 		this.width = 50;
 		this.height = 50;
 		this.stars = [];
@@ -101,13 +102,11 @@ class SolarObj {
 		this.system = system; // Star System it belongs to
 
 		// Location Attributes
+		this.name = "";
+		this.mapIcon = "black";
 		this.population;
 		this.owner;
 		this.mass;
-	}
-
-	getMapIcon() {
-		return "black";
 	}
 
 	static calcDistance(s1, s2) {
@@ -131,14 +130,12 @@ class Star extends SolarObj {
 	constructor(system) {
 		super(system);
 
+		this.name = "Star";
+		this.mapIcon = "red";
 		this.type;
 		this.diameter;
 
-		this.resources;
-	}
-
-	getMapIcon() {
-		return "red";
+		this.resources = [];
 	}
 
 	static genType() {
@@ -157,16 +154,14 @@ class Planet extends SolarObj {
 		super(system);
 
 		// Body Attributes
+		this.name = "Planet";
+		this.mapIcon = "green";
 		this.type = Planet.genType();
 		this.diameter = Planet.genDiameter(this.type); // km
 
 		this.moons = [];
 		this.resources = [];
 
-	}
-
-	getMapIcon() {
-		return "green";
 	}
 
 	static genType() {
@@ -214,14 +209,12 @@ class Moon extends SolarObj {
 		this.planet = planet;
 
 		// Body Attributes
+		this.name = "Moon";
+		this.mapIcon = "grey";
 		this.type = Moon.genType(planet);
 		this.diameter = Moon.genDiameter(planet);
 
 		this.resources = [];
-	}
-
-	getMapIcon() {
-		return "grey";
 	}
 
 	static genType(planet) {
@@ -246,12 +239,9 @@ class Station extends SolarObj {
 	constructor(system) {
 
 		// Station Attributes
-
+		this.name = "Station";
+		this.mapIcon = "blue";
 		this.modules = [];
-	}
-
-	getMapIcon() {
-		return "blue";
 	}
 
 }

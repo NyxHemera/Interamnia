@@ -1,6 +1,10 @@
-<h2>{{hoveredCell.x}} - {{hoveredCell.y}}</h2>
+<div class="map-info-box">
+	<h2 class="left-align">{{system.name}} - ({{hoveredCell.x}}, {{hoveredCell.y}})</h2>
+	<h2 *ngIf="detectedStructure" class="right-align">{{detectedStructure.name}}</h2>
+</div>
 <div class="map">
 	<div *ngFor="let row of mapArr; let y=index" class='row'>
-		<div *ngFor="let col of row; let x=index" class='col' [style.background]="col" (click)="selectCell(x, y)" on-mouseover="hoverCell(x,y)"></div>
+		<div *ngFor="let cell of row; let x=index" class='cell' [style.background]="cell.mapIcon" (click)="selectCell(x, y)" on-mouseover="hoverCell(x,y)">
+		</div>
 	</div>
 </div>

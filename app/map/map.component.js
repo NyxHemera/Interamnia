@@ -17,6 +17,7 @@ var MapComponent = (function () {
             x: 0,
             y: 0
         };
+        this.detectedStructure = {};
     }
     MapComponent.prototype.ngOnInit = function () {
         console.log(this.system);
@@ -25,6 +26,7 @@ var MapComponent = (function () {
     MapComponent.prototype.hoverCell = function (x, y) {
         this.hoveredCell.x = x + 1;
         this.hoveredCell.y = y + 1;
+        this.detectedStructure = this.mapArr[y][x];
     };
     MapComponent.prototype.selectCell = function (x, y) {
         console.log(x + ' - ' + y);
@@ -35,7 +37,7 @@ var MapComponent = (function () {
         for (var i = 0; i < ss.height; i++) {
             mapArr.push([]);
             for (var j = 0; j < ss.width; j++) {
-                mapArr[i].push(" ");
+                mapArr[i].push("");
             }
         }
         var staticStructures = ss.getStaticStructures();
@@ -43,7 +45,7 @@ var MapComponent = (function () {
         for (var key in staticStructures) {
             staticStructures[key].forEach(function (struct, i) {
                 // Coordinates reversed to allow for easy map printing
-                mapArr[struct.coords.y][struct.coords.x] = struct.getMapIcon();
+                mapArr[struct.coords.y][struct.coords.x] = struct;
             });
         }
         return mapArr;

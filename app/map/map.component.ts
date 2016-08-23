@@ -18,8 +18,10 @@ export class MapComponent implements OnInit {
 		y: 0
 	};
 
-	constructor() {
+	detectedStructure = {};
 
+	constructor() {
+		
 	}
 
 	ngOnInit() {
@@ -30,6 +32,8 @@ export class MapComponent implements OnInit {
 	hoverCell(x, y) {
 		this.hoveredCell.x = x+1;
 		this.hoveredCell.y = y+1;
+
+		this.detectedStructure = this.mapArr[y][x];
 	}
 
 	selectCell(x, y) {
@@ -43,7 +47,7 @@ export class MapComponent implements OnInit {
 		for(let i=0; i<ss.height; i++) {
 			mapArr.push([]);
 			for(let j=0; j<ss.width; j++) {
-				mapArr[i].push(" ");
+				mapArr[i].push("");
 			}
 		}
 
@@ -52,7 +56,7 @@ export class MapComponent implements OnInit {
 		for(let key in staticStructures) {
 			staticStructures[key].forEach( (struct, i) => {
 				// Coordinates reversed to allow for easy map printing
-				mapArr[struct.coords.y][struct.coords.x] = struct.getMapIcon();
+				mapArr[struct.coords.y][struct.coords.x] = struct;
 			});
 		}
 

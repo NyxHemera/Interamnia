@@ -1,32 +1,41 @@
-.col {
+.cell {
 	margin: 0;
 	padding: 0;
-	height: 1vmax;
-	width: 1vmax;
-	box-sizing: border-box;
+	flex: 1 0 0px;
 	border: solid 1px black;
 	border-width: 0px 1px 1px 0px;
-	display: inline-block;
 	&:first-child {
 		border-left-width: 1px;
+	}
+	&:before {
+	  content: "";
+		display: block;
+		padding-top: 100%;
+	  float: left;
 	}
 }
 .map {
 	margin: 0;
 	padding: 0;
-	border-bottom: none;
-	display: inline-block;
-	width: 50vmax;
-	font-size: 0;
+	width: 45vw;
+	height: 45vw;
+}
+.map-info-box {
+	.left-align {
+		float: left;
+	}
+	.right-align {
+		float: right;
+	}
 }
 .row {
-	margin: 0;
+	width: 100%;
+	display: flex;
 	padding: 0;
-	height: 1vmax;
-	display: inline-block;
-	box-sizing: border-box;
+	margin: 0;
+	justify-content: space-around;
 	&:first-child {
-		> .col {
+		> .cell {
 			border-top-width: 1px;
 		}
 	}
