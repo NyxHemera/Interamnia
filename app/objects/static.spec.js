@@ -2,8 +2,11 @@
 var static_1 = require('./static');
 describe('Static Library', function () {
     describe('StarSystem', function () {
+        var system;
+        beforeEach(function () {
+            system = new static_1.StarSystem();
+        });
         it('generates 1-3 stars per system', function () {
-            var system = new static_1.StarSystem();
             for (var i = 0; i < 100; i++) {
                 system.planets = static_1.StarSystem.genPlanets(system);
                 expect(system.stars.length > 0).toEqual(true);
@@ -11,13 +14,11 @@ describe('Static Library', function () {
             }
         });
         it('has stars', function () {
-            var system = new static_1.StarSystem();
             expect(system.stars).toBeTruthy();
             expect(system.stars.length > 0).toEqual(true);
             expect(system.stars.length <= 3).toEqual(true);
         });
         it('generates 0-8 planets per system', function () {
-            var system = new static_1.StarSystem();
             for (var i = 0; i < 100; i++) {
                 system.planets = static_1.StarSystem.genPlanets(system);
                 expect(system.planets.length >= 0).toEqual(true);
@@ -27,8 +28,9 @@ describe('Static Library', function () {
     });
     describe('SolarObj', function () {
         it('can calculate the distance between two solar objects', function () {
-            var s1 = new static_1.SolarObj();
-            var s2 = new static_1.SolarObj();
+            var system = new static_1.StarSystem();
+            var s1 = new static_1.SolarObj(system);
+            var s2 = new static_1.SolarObj(system);
             s1.coords.x = 3;
             s1.coords.y = 23;
             s2.coords.x = 43;
@@ -37,15 +39,19 @@ describe('Static Library', function () {
         });
     });
     describe('Planet', function () {
+        var system;
+        beforeEach(function () {
+            system = new static_1.StarSystem();
+        });
         it('has a type', function () {
             for (var i = 0; i < 10; i++) {
-                var x = new static_1.Planet();
+                var x = new static_1.Planet(system);
                 expect(x.type).toBeTruthy();
             }
         });
         it('has a diameter', function () {
             for (var i = 0; i < 10; i++) {
-                var x = new static_1.Planet();
+                var x = new static_1.Planet(system);
                 expect(x.diameter).toBeTruthy();
             }
         });
@@ -69,33 +75,37 @@ describe('Static Library', function () {
         });
     });
     describe('Moon', function () {
+        var system;
+        beforeEach(function () {
+            system = new static_1.StarSystem();
+        });
         it('has a type', function () {
             for (var i = 0; i < 10; i++) {
-                var p = new static_1.Planet();
+                var p = new static_1.Planet(system);
                 var m = new static_1.Moon(p);
                 expect(p.type).toBeTruthy();
             }
         });
         it('has a type of ice if its planet is ice type', function () {
-            var p = new static_1.Planet();
+            var p = new static_1.Planet(system);
             p.type = "Ice";
             var m = new static_1.Moon(p);
             expect(m.type).toEqual(p.type);
         });
         it('has a planet', function () {
-            var p = new static_1.Planet();
+            var p = new static_1.Planet(system);
             var m = new static_1.Moon(p);
             expect(m.planet).toBeTruthy();
         });
         it('has a diameter', function () {
             for (var i = 0; i < 10; i++) {
-                var p = new static_1.Planet();
+                var p = new static_1.Planet(system);
                 var m = new static_1.Moon(p);
                 expect(p.diameter).toBeTruthy();
             }
         });
         it('has diameter smaller than its planet', function () {
-            var p = new static_1.Planet();
+            var p = new static_1.Planet(system);
             var m = new static_1.Moon(p);
             for (var i = 0; i < 100; i++) {
                 var x = static_1.Moon.genDiameter(p);

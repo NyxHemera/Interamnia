@@ -1,0 +1,6 @@
+<h2>{{hoveredCell.x}} - {{hoveredCell.y}}</h2>
+<div class="map">
+	<div *ngFor="let row of mapArr; let y=index" class='row'>
+		<div *ngFor="let col of row; let x=index" class='col' [style.background]="col" (click)="selectCell(x, y)" on-mouseover="hoverCell(x,y)"></div>
+	</div>
+</div>

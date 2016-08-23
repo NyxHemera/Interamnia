@@ -7,6 +7,8 @@ class StarSystem {
 		this.galaxy; // Galaxy it belongs to
 
 		// System Attributes
+		this.width = 50;
+		this.height = 50;
 		this.stars = [];
 		this.planets = [];
 		this.moons = [];
@@ -20,6 +22,15 @@ class StarSystem {
 			//newMoons.forEach( (moon, i) => { this.moons.push(moon); });
 		});
 
+	}
+
+	getStaticStructures() {
+		return {
+			stars: this.stars,
+			planets: this.planets,
+			moons: this.moons,
+			stations: this.stations
+		};
 	}
 
 	static genStars(system) {
@@ -79,6 +90,7 @@ class SolarObj {
 	constructor(system) {
 		// Location Data - Relative to System
 		this.coords = { x: 0, y: 0 };
+		this.coords = SolarObj.genCoords(system);
 		this.system = system; // Star System it belongs to
 
 		// Location Attributes
@@ -87,11 +99,22 @@ class SolarObj {
 		this.mass;
 	}
 
+	getMapIcon() {
+		return "black";
+	}
+
 	static calcDistance(s1, s2) {
 		var a = s1.coords.x - s2.coords.x;
 		var b = s1.coords.y - s2.coords.y;
 		var dist = Math.sqrt((a*a)+(b*b))
 		return Math.round(dist*100)/100; // Rounds to two decimals
+	}
+
+	static genCoords(system) {
+		return {
+			x: Math.floor(Math.random()*system.width),
+			y: Math.floor(Math.random()*system.height)
+		}
 	}
 
 }
@@ -105,6 +128,10 @@ class Star extends SolarObj {
 		this.diameter;
 
 		this.resources;
+	}
+
+	getMapIcon() {
+		return "red";
 	}
 
 	static genType() {
@@ -128,6 +155,10 @@ class Planet extends SolarObj {
 
 		this.resources = [];
 
+	}
+
+	getMapIcon() {
+		return "green";
 	}
 
 	static genType() {
@@ -162,9 +193,10 @@ class Planet extends SolarObj {
 
 class Moon extends SolarObj {
 
-	constructor(planet, system) {
-		super(system);
+	constructor(planet) {
+		super(planet.system);
 
+		this.system = planet.system;
 		this.planet = planet;
 
 		// Body Attributes
@@ -172,6 +204,10 @@ class Moon extends SolarObj {
 		this.diameter = Moon.genDiameter(planet);
 
 		this.resources = [];
+	}
+
+	getMapIcon() {
+		return "grey";
 	}
 
 	static genType(planet) {
@@ -198,6 +234,10 @@ class Station extends SolarObj {
 		// Station Attributes
 
 		this.modules = [];
+	}
+
+	getMapIcon() {
+		return "blue";
 	}
 
 }

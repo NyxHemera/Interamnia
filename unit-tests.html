@@ -29,7 +29,8 @@
     // Delayed to prevent specs from running multiple times
     setTimeout(function() {
       Promise.all([
-        System.import('app/objects/static.spec')
+        System.import('app/objects/static.spec'),
+        System.import('app/map/map.component.spec')
       ])
       .then(window.onload)
       .catch(console.error.bind(console));

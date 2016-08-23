@@ -10,15 +10,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
+var map_component_1 = require('./map/map.component');
+var static_1 = require('./objects/static');
 var AppComponent = (function () {
     function AppComponent() {
+        this.system = new static_1.StarSystem();
     }
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
             templateUrl: 'app/app.component.html',
             // styleUrls: ['app/app.component.css'],
-            directives: [router_1.ROUTER_DIRECTIVES]
+            directives: [router_1.ROUTER_DIRECTIVES, map_component_1.MapComponent]
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
