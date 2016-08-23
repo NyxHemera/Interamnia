@@ -24,6 +24,24 @@ describe('Static Library', function () {
                 expect(system.planets.length <= 8).toEqual(true);
             }
         });
+        it('generates 0-5 moons per planet', function () {
+            for (var i = 0; i < 100; i++) {
+                var system = new static_1.StarSystem();
+                for (var j = 0; j < system.planets.length; j++) {
+                    expect(system.planets[j].moons).toBeTruthy();
+                    expect(system.planets[j].moons.length >= 0).toEqual(true);
+                    expect(system.planets[j].moons.length <= 5).toEqual(true);
+                }
+            }
+        });
+        it('generates no moons if there are no planets', function () {
+            for (var i = 0; i < 100; i++) {
+                var system = new static_1.StarSystem();
+                if (system.planets.length === 0) {
+                    expect(system.moons.length).toEqual(0);
+                }
+            }
+        });
     });
     describe('SolarObj', function () {
         it('can calculate the distance between two solar objects', function () {

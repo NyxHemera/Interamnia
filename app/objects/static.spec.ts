@@ -19,7 +19,6 @@ describe('Static Library', () => {
 			}
 		});
 
-
 		it('has stars', () => {
 			var system = new StarSystem();
 			expect(system.stars).toBeTruthy();
@@ -35,6 +34,26 @@ describe('Static Library', () => {
 				expect(system.planets.length <= 8).toEqual(true);
 			}
 		});
+
+		it('generates 0-5 moons per planet', () => {
+			for(let i=0; i<100; i++) {
+				let system = new StarSystem();
+				for(let j=0; j<system.planets.length; j++) {
+					expect(system.planets[j].moons).toBeTruthy();
+					expect(system.planets[j].moons.length >= 0).toEqual(true);
+					expect(system.planets[j].moons.length <= 5).toEqual(true);
+				}
+			}
+		});
+
+		it('generates no moons if there are no planets', () => {
+			for(let i=0; i<100; i++) {
+				let system = new StarSystem();
+				if(system.planets.length === 0) {
+					expect(system.moons.length).toEqual(0);
+				}
+			}
+		})
 
 	});
 
