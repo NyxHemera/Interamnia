@@ -17,10 +17,7 @@ class StarSystem {
 		// Generate Structures
 		this.stars = StarSystem.genStars(this);
 		this.planets = StarSystem.genPlanets(this);
-		this.planets.forEach( (planet, i) => {
-			var newMoons = Planet.genMoons(planet);
-			//newMoons.forEach( (moon, i) => { this.moons.push(moon); });
-		});
+		this.moons = StarSystem.genMoons(this.planets);
 
 	}
 
@@ -81,6 +78,16 @@ class StarSystem {
 		}
 
 		return planets;
+	}
+
+	static genMoons(planets) {
+		var moons = [];
+		planets.forEach( (planet, i) => {
+			var newMoons = Planet.genMoons(planet);
+			newMoons.forEach( (moon, i) => { moons.push(moon); });
+		});
+
+		return moons;
 	}
 
 }
@@ -153,6 +160,7 @@ class Planet extends SolarObj {
 		this.type = Planet.genType();
 		this.diameter = Planet.genDiameter(this.type); // km
 
+		this.moons = [];
 		this.resources = [];
 
 	}
@@ -186,7 +194,13 @@ class Planet extends SolarObj {
 
 	// Called on System Generation
 	static genMoons(planet) {
-
+		var moons = [];
+		var rand = Math.floor(Math.random()*3);
+		for(let i=0; i<rand; i++) {
+			moons.push(new Moon(planet));
+		}
+		planet.moons = moons;
+		return moons;
 	}
 
 }
