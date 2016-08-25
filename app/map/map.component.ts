@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { StarSystem } from '../objects/static';
+import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
+import { StarSystem, SolarObj } from '../objects/static';
 
 @Component({
 	selector: 'map-component',
@@ -12,6 +12,7 @@ export class MapComponent implements OnInit {
 	mapArr = [];
 	@Input('system')
 	system: StarSystem;
+	@Output() onSOSelect = new EventEmitter<SolarObj>();
 
 	hoveredCell = {
 		x: 0,
@@ -38,6 +39,7 @@ export class MapComponent implements OnInit {
 
 	selectCell(x, y) {
 		console.log(x + ' - ' + y);
+		this.onSOSelect.emit(this.mapArr[y][x]);
 	}
 
 	static buildMapFromStarSystem(ss) {

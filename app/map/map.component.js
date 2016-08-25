@@ -13,6 +13,7 @@ var static_1 = require('../objects/static');
 var MapComponent = (function () {
     function MapComponent() {
         this.mapArr = [];
+        this.onSOSelect = new core_1.EventEmitter();
         this.hoveredCell = {
             x: 0,
             y: 0
@@ -30,6 +31,7 @@ var MapComponent = (function () {
     };
     MapComponent.prototype.selectCell = function (x, y) {
         console.log(x + ' - ' + y);
+        this.onSOSelect.emit(this.mapArr[y][x]);
     };
     MapComponent.buildMapFromStarSystem = function (ss) {
         var mapArr = [];
@@ -54,6 +56,10 @@ var MapComponent = (function () {
         core_1.Input('system'), 
         __metadata('design:type', (typeof (_a = typeof static_1.StarSystem !== 'undefined' && static_1.StarSystem) === 'function' && _a) || Object)
     ], MapComponent.prototype, "system", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], MapComponent.prototype, "onSOSelect", void 0);
     MapComponent = __decorate([
         core_1.Component({
             selector: 'map-component',

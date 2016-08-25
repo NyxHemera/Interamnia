@@ -9,27 +9,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var router_1 = require('@angular/router');
-var map_component_1 = require('./map/map.component');
-var static_info_component_1 = require('./objects/components/static-info.component');
-var static_1 = require('./objects/static');
-var AppComponent = (function () {
-    function AppComponent() {
-        this.system = new static_1.StarSystem();
+var static_1 = require('../static');
+var StaticInfoComponent = (function () {
+    function StaticInfoComponent() {
     }
-    AppComponent.prototype.SOSelected = function (solarObj) {
-        this.selectedObj = solarObj;
+    StaticInfoComponent.prototype.ngOnInit = function () {
+        console.log(this.solarObj);
     };
-    AppComponent = __decorate([
+    __decorate([
+        core_1.Input('solarObj'), 
+        __metadata('design:type', (typeof (_a = typeof static_1.SolarObj !== 'undefined' && static_1.SolarObj) === 'function' && _a) || Object)
+    ], StaticInfoComponent.prototype, "solarObj", void 0);
+    StaticInfoComponent = __decorate([
         core_1.Component({
-            selector: 'my-app',
-            templateUrl: 'app/app.component.html',
-            styleUrls: ['app/app.component.css'],
-            directives: [router_1.ROUTER_DIRECTIVES, map_component_1.MapComponent, static_info_component_1.StaticInfoComponent]
+            selector: 'static-info-component',
+            templateUrl: 'app/objects/components/static-info.component.html',
+            styleUrls: ['app/objects/components/static-info.component.css']
         }), 
         __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    ], StaticInfoComponent);
+    return StaticInfoComponent;
+    var _a;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.StaticInfoComponent = StaticInfoComponent;
+//# sourceMappingURL=static-info.component.js.map

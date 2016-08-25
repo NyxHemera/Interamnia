@@ -66,7 +66,6 @@ describe('Static Library', function () {
                 y: Math.floor(system.width / 2)
             };
             s2.coords = s1.coords;
-            console.log(s1.coords);
             expect(s1.coords).toEqual(s2.coords);
             expect(static_1.Star.validatePlacement(s2.coords, [s1], 2.5)).not.toBeTruthy();
         });

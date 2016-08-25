@@ -239,6 +239,14 @@ class Planet extends SolarObj {
 			y: Math.floor(Math.random()*system.height)
 		}
 
+		// Move out of corners to prevent stack overflow in moon gen
+		if(coords.x < 5 && coords.y < 5
+			|| coords.x > system.width-5 && coords.y < 5
+			|| coords.x < 5 && coords.y > system.height-5
+			|| coords.x > system.width-5 && coords.y > system.height-5) {
+			return Planet.genCoords(system, planets);
+		}
+
 		// Check against stars
 		if(SolarObj.validatePlacement(coords, system.stars, 4)) {
 			// If valid check against other planets

@@ -1,7 +1,8 @@
 <div class="info-wrap">
 	<h2>Info Section</h2>
+	<static-info-component *ngIf="selectedObj" [solarObj]="selectedObj"></static-info-component>
 </div>
 <div class="map-wrap">
-	<map-component [system]="system"></map-component>
+	<map-component [system]="system" (onSOSelect)="SOSelected($event)"></map-component>
 </div>
 <!-- <router-outlet></router-outlet> -->

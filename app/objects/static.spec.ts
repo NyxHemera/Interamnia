@@ -91,7 +91,6 @@ describe('Static Library', () => {
 			}
 
 			s2.coords = s1.coords;
-			console.log(s1.coords);
 
 			expect(s1.coords).toEqual(s2.coords);
 			expect(Star.validatePlacement(s2.coords, [s1], 2.5)).not.toBeTruthy();
