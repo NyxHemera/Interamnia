@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
-import { StarSystem, SolarObj } from '/app/objects/static';
+import { StarSystem, SolarObj } from 'app/objects/static';
 
 @Component({
 	selector: 'map-component',

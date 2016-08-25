@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { SolarObj } from '/app/objects/static';
+import { SolarObj } from 'app/objects/static';
 
 @Component({
 	selector: 'static-info-component',
