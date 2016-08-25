@@ -1,6 +1,7 @@
 import {
 	StarSystem,
 	SolarObj,
+	Star,
 	Planet,
 	Moon,
 	Station
@@ -77,6 +78,38 @@ describe('Static Library', () => {
 
 	});
 
+	describe('Star', () => {
+
+		it('can detect stars too close to each other', () => {
+			var system = { width: 50, height: 50};
+			var s1 = new Star(system, []); //built with no previous stars
+			var s2 = new Star(system, []);
+
+			s1.coords = {
+				x: Math.floor(system.width/2),
+				y: Math.floor(system.width/2)
+			}
+
+			s2.coords = s1.coords;
+			console.log(s1.coords);
+
+			expect(s1.coords).toEqual(s2.coords);
+			expect(Star.validatePlacement(s2.coords, [s1], 2.5)).not.toBeTruthy();
+		});
+
+		it('can generate stars a proper distance from previously created stars', () => {
+			var system = { width: 50, height: 50};
+			var s1 = new Star(system, []); //built with no previous stars
+			var s2 = new Star(system, [s1]);
+			for(let i=0; i<100; i++) {
+				let s3 = new Star(system, [s1, s2]);
+				expect(SolarObj.calcDistance(s1, s2) > 2.5).toBeTruthy();
+			}
+
+		});
+
+	});
+
 	describe('Planet', () => {
 
 		let system;
@@ -87,14 +120,14 @@ describe('Static Library', () => {
 
 		it('has a type', () => {
 			for(var i=0; i<10; i++) {
-				var x = new Planet(system);
+				var x = new Planet(system, []);
 				expect(x.type).toBeTruthy();
 			}
 		});
 
 		it('has a diameter', () => {
 			for(var i=0; i<10; i++) {
-				var x = new Planet(system);
+				var x = new Planet(system, []);
 				expect(x.diameter).toBeTruthy();
 			}
 		});
@@ -125,44 +158,41 @@ describe('Static Library', () => {
 	describe('Moon', () => {
 
 		let system;
-
+		let p;
+		let m;
 		beforeEach(() => {
 			system = new StarSystem();
+			p = new Planet(system, []);
+			m = new Moon(p, []);
 		});
 
 		it('has a type', () => {
 			for(var i=0; i<10; i++) {
-				var p = new Planet(system);
-				var m = new Moon(p);
+				var p = new Planet(system, []);
+				var m = new Moon(p, []);
 				expect(p.type).toBeTruthy();
 			}
 		});
 
 		it('has a type of ice if its planet is ice type', () => {
-			var p = new Planet(system);
 			p.type = "Ice";
-			var m = new Moon(p);
+			var m = new Moon(p, []);
 			expect(m.type).toEqual(p.type);
 		});
 
 		it('has a planet', () => {
-			var p = new Planet(system);
-			var m = new Moon(p);
-
 			expect(m.planet).toBeTruthy();
 		});
 
 		it('has a diameter', () => {
 			for(var i=0; i<10; i++) {
-				var p = new Planet(system);
-				var m = new Moon(p);
+				var p = new Planet(system, []);
+				var m = new Moon(p, []);
 				expect(p.diameter).toBeTruthy();
 			}
 		});
 
 		it('has diameter smaller than its planet', () => {
-			var p = new Planet(system);
-			var m = new Moon(p);
 			for(var i=0; i<100; i++) {
 				var x = Moon.genDiameter(p);
 				expect(x < p.diameter).toBeTruthy();
