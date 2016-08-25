@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var static_1 = require('../static');
+var static_1 = require('/app/objects/static');
 var StaticInfoComponent = (function () {
     function StaticInfoComponent() {
     }
@@ -23,8 +23,8 @@ var StaticInfoComponent = (function () {
     StaticInfoComponent = __decorate([
         core_1.Component({
             selector: 'static-info-component',
-            templateUrl: 'app/objects/components/static-info.component.html',
-            styleUrls: ['app/objects/components/static-info.component.css']
+            templateUrl: 'app/components/static-info/static-info.component.html',
+            styleUrls: ['app/components/static-info/static-info.component.css']
         }), 
         __metadata('design:paramtypes', [])
     ], StaticInfoComponent);

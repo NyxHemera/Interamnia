@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var static_1 = require('../objects/static');
+var static_1 = require('/app/objects/static');
 var MapComponent = (function () {
     function MapComponent() {
         this.mapArr = [];
@@ -63,8 +63,8 @@ var MapComponent = (function () {
     MapComponent = __decorate([
         core_1.Component({
             selector: 'map-component',
-            templateUrl: 'app/map/map.component.html',
-            styleUrls: ['app/map/map.component.css']
+            templateUrl: 'app/components/map/map.component.html',
+            styleUrls: ['app/components/map/map.component.css']
         }), 
         __metadata('design:paramtypes', [])
     ], MapComponent);

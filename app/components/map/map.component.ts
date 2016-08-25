@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
-import { StarSystem, SolarObj } from '../objects/static';
+import { StarSystem, SolarObj } from '/app/objects/static';
 
 @Component({
 	selector: 'map-component',
-	templateUrl: 'app/map/map.component.html',
-	styleUrls: ['app/map/map.component.css']
+	templateUrl: 'app/components/map/map.component.html',
+	styleUrls: ['app/components/map/map.component.css']
 })
 
 export class MapComponent implements OnInit {

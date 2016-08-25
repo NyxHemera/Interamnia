@@ -1,0 +1,14 @@
+<div class='nav-component'>
+	<div class='tab' (click)='updateNavIndicator(0)'>
+		<h1>Tab One</h1>
+	</div>
+	<div class='tab' (click)='updateNavIndicator(1)'>
+		<h1>Tab Two</h1>
+	</div>
+	<div class='tab' (click)='updateNavIndicator(2)'>
+		<h1>Tab Three</h1>
+	</div>
+	<div class='indicator-line'
+	[style.width]="IL.width + 'px'"
+	[style.left]="IL.left + 'px'"></div>
+</div>

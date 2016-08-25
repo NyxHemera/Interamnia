@@ -10,8 +10,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var map_component_1 = require('./map/map.component');
-var static_info_component_1 = require('./objects/components/static-info.component');
+var map_component_1 = require('./components/map/map.component');
+var nav_component_1 = require('./components/nav/nav.component');
+var static_info_component_1 = require('./components/static-info/static-info.component');
 var static_1 = require('./objects/static');
 var AppComponent = (function () {
     function AppComponent() {
@@ -25,7 +26,10 @@ var AppComponent = (function () {
             selector: 'my-app',
             templateUrl: 'app/app.component.html',
             styleUrls: ['app/app.component.css'],
-            directives: [router_1.ROUTER_DIRECTIVES, map_component_1.MapComponent, static_info_component_1.StaticInfoComponent]
+            directives: [router_1.ROUTER_DIRECTIVES,
+                map_component_1.MapComponent,
+                static_info_component_1.StaticInfoComponent,
+                nav_component_1.NavComponent]
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
